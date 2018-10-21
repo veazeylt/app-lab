@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!--Title of page.-->
+    <title>Shoe Type vs Drink Type</title>
+    <script type="text/javascript" src="correlation.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <script type="text/javascript">
+        let var1 = [];
+        let var2 = [];
+
+        const addData = function () {
+            const var1Output = document.getElementById("box1");
+            const var2Output = document.getElementById("box2");
+
+            var1.push(document.getElementById('var1').value);
+            var2.push(document.getElementById('var2').value);
+
+            var1Output.innerHTML = var1.join('<br/>');
+            var2Output.innerHTML = var2.join('<br/>');
+
+            //clear our input fields
+            document.getElementById('var1').value = "";
+            document.getElementById('var2').value = "";
+
+            document.getElementById('correlation').innerHTML = getPearsonCorrelation(var1, var2).toString();
+
+        }
+
+        const clearData = () => {
+            var1 = [];
+            var2 = [];
+        }
+    </script>
+    <div class="container">
+        <header class="text-center">
+            <h1>Shoe Type vs Drink Type <br> Correlation <br>
+                👞 vs ☕
+                </h1>
+        </header>
+
+        <form>
+            <div class="row text-center">
+                <div class="col-sm form-group">
+                    <label class="h3" for="display-name"> Shoes:</label>
+                    <br>
+                    <select id="var1" class="form-control">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                    <small id="" class="form-text text-muted">Sneakers = 0, Dress Shoes = 1, Sandals = 2</small>
+                </div>
+                <div class="col-sm form-group">
+                    <label class="h3" for="display-name"> Drinks:</label>
+                    <br>
+                    <select id="var2" class="form-control">
+                        <option>0</option>
+                        <option>1</option>
+                    </select>
+                    <small id="" class="form-text text-muted">Hot = 0, Cold = 1</small>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm">
+                    <input class="mb-3 mt-3 btn btn-outline-primary" type=button onclick="addData()" value="Add Data" />
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm">
+                    <input class="btn btn-outline-danger" type=submit onclick="clearData()" value="Clear Table" />
+                </div>
+            </div>
+        </form>
+        <br>
+        <div class="text-center">
+            <h2>Collected Data</h2>
+        </div>
+        <div>
+            <div class="centering flex" class="text-center" id="data table">
+                
+
+                    <div class="form-group text-center" id="variable1">
+                        <p>Shoes</p>
+                        <div class="col-sm" id="box1" ; style="border:3px solid black;width:150px;height:150px;overflow:auto">
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="form-group text-center" id="variable2">
+                        <p>Drinks</p>
+                        <div id="box2" ; style="border:3px solid black;width:150px;height:150px;overflow:auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" id="result">
+                <h1>Correlation:</h1>
+                <a href="correllation.html">
+                <input type="button" class="btn btn-success btn-block" value="Calculate Correlation">
+                </a>
+                <div id="correlation">
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
